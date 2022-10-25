@@ -5,11 +5,11 @@ WORKDIR /usr/src
 ENV DEBIAN_FRONTEND noninteractive
 
 # Set some variables to download the proper header modules
-ENV VERSION="2.83.18%2Brev1.dev"
+ENV VERSION="2.105.16"
 ENV BALENA_MACHINE_NAME="genericx86-64-ext"
 
 # Set variables for the Yocto version of the OS
-ENV YOCTO_VERSION=5.10.43
+ENV YOCTO_VERSION=5.14.21
 ENV YOCTO_KERNEL=${YOCTO_VERSION}-yocto-standard
 
 # Set variables to download proper NVIDIA driver

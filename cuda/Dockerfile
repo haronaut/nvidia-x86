@@ -5,7 +5,7 @@ WORKDIR /usr/src
 ENV DEBIAN_FRONTEND noninteractive
 
 # Set variables for the Yocto version of the OS
-ENV YOCTO_VERSION=5.10.43
+ENV YOCTO_VERSION=5.14.21
 ENV YOCTO_KERNEL=${YOCTO_VERSION}-yocto-standard
 
 # Set variables to download proper NVIDIA driver
@@ -50,18 +50,15 @@ RUN \
 RUN \
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin && \
     mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600 && \
-    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub && \
+    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub && \
     add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /" && \
     apt-get update && \
     apt-get -y install cuda
     
-ENV PATH="/usr/local/cuda-11.5/bin:$PATH"
-ENV LD_LIBRARY_PATH="/usr/local/cuda-11.5/lib64:$LD_LIBRARY_PATH"
+ENV PATH="/usr/local/cuda-11.8/bin:$PATH"
+ENV LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
 
-# Compile one CUDA sample application
-RUN \
-    cd /usr/local/cuda-11.5/samples/1_Utilities/deviceQuery && \
-    make -j8
+
     
 WORKDIR /usr/src/app
 
